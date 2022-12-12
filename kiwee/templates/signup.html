@@ -8,5 +8,12 @@
 </head>
 <body>
     <h1>Make an Account:</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Sign up</button>
+  </form>
 </body>
 </html>

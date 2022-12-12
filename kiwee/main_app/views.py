@@ -13,10 +13,6 @@ def homepage(request):
     return render(request, 'homepage.html')
 
 
-def signup(request):
-    return render(request, 'signup.html')    
-
-
 @login_required
 def profile(request, username):
   user = User.objects.get(username=username)
@@ -44,4 +40,18 @@ def login_view(request):
 def logout_view(request):
   logout(request)
   return HttpResponseRedirect('/')
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['username']
+            user = form.save()
+            login(request, user)
+            return HttpResponseRedirect('/user/'+u)
+        else:
+          return render(request, 'signup.html', {'form': form })
+    else:
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form })
 
