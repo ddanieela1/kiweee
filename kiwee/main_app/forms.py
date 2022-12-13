@@ -1,12 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db import models
 from .models import Venue
 from django.forms import ModerlForm
 
 
 
-Class NewUserForm(UserCreationForm):
+Class SettingsForm(UserCreationForm):
 
 email = forms.EmailField(required=True)
     Class Meta:

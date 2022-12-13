@@ -25,16 +25,12 @@
 </style>
 <body>
     <div class="container ">
-            <form>
+            <form method = 'POST'>
+                {% csrf_token %}
                 <div>
-                    <img src="{{user_profile.profile_image.url}}" class="rounded mx-auto d-block" >
+                    <img width="100" src="{{user_profile.profile_image.url}}" class="rounded mx-auto d-block" >
                     <input type="file" name="image">
                     </div>
-            <div class="col-4">
-          <label for="profilePicture" class="form-label">Profile Picture</label>
-          <input type="profilePicture" class="form-control" id="profilePicture" >
-          <div id="profilePicture" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
         <div class="col-4">
           <label for="userBio" class="form-label">Bio</label>
           <input type="userBio" class="form-control" id="userBio">
