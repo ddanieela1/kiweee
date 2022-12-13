@@ -51,6 +51,7 @@ def logout_view(request):
 
 
 def signup(request):
+
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
 
@@ -74,6 +75,7 @@ def signup(request):
 
 
 @login_required
+
 def settings(request):
 
     user_profile = Profile.objects.filter(user=request.user)
@@ -103,4 +105,5 @@ def settings(request):
             user_profile = None
 
         return redirect('settings')
+        
     return render(request, 'settings.html', {'user_profile': user_profile})
