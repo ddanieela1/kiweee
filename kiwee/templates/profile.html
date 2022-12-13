@@ -10,5 +10,6 @@
     {% csrf_token %}
 <h1>{{ username }}'s Profile:</h1>
 <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'logout' %}">Logout</a></li>
+<li class="breadcrumb-item active" aria-current="page"><a href="{% url 'settings' %}">Settings</a></li>
 </body>
 </html>
