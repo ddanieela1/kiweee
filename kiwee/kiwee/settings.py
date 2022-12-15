@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import cloudinary_storage
 
 from dotenv import load_dotenv, dotenv_values
 config = dotenv_values('.env')
@@ -43,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app'
+    'main_app',
+    # 'cloudinary',
+    # 'cloudinary_storage'
 ]
 
 # SITE_ID = 2
@@ -138,5 +141,14 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL='/media/'
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'dhrc5pkx8',
+#     'API_KEY': '197617767833642',
+#     'API_SECRET': 'lJ2A5WrNIUz4UwiUijRrqRXMYaM',
+# }
+
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+MEDIA_URL='/media/'
+# BASE_DIR = Path(__file__).resolve().parent.parent
