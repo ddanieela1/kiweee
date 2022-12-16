@@ -18,9 +18,11 @@
                       Gallery
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">An item</li>
-                      <li class="list-group-item">A second item</li>
-                      <li class="list-group-item">A third item</li>
+
+                      {%for category in categories%}
+                      <li class="list-group-item">{{category.name}}</li>
+                      {% endfor %}
+
                       <li class="list-group-item">
                         <a href = "{% url 'upload' %}" class = "btn btn-dark btn-block btn-sm m-1">Add Photo</a>
                       </li>
@@ -28,17 +30,26 @@
                   </div>
             </div>
             <div class = "col-md-9">
-                <div class="col-md-4">
 
+
+                {%for post in posts%}
+
+
+                
+                <div class="col-md-4">
+                    
                     <div class="card my-2" >
                         <img class = "image-thumbnail"
-                        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fcats%2F&psig=AOvVaw29dveB3aQAKdpoD96SucKs&ust=1671215041207000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCOjc7aif_PsCFQAAAAAdAAAAABAE" class="card-img-top" alt="...">
+                        src="{{post.media.url}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                         <small><p>Category: Pets</p></small>
+                            <small><p>Category: Pets</p></small>
                         </div>
-                        <a href= "btn btn-outline-dark btn-sm m-1">View</a>
-                      </div>
+                        <a href="" class ="btn btn-outline-dark btn-sm m-1">View</a>
+                    </div>
                 </div>
+                {% empty%}
+                <h3>No photos ... T_T </h3>
+                {% endfor %}
             </div>
         </div>
     </div>

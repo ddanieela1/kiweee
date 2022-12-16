@@ -149,6 +149,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
 MEDIA_URL='/media/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_ROOT= BASE_DIR / 'static/assets'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # BASE_DIR = Path(__file__).resolve().parent.parent

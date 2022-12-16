@@ -25,6 +25,6 @@ urlpatterns = [
     path('', include('main_app.urls')),
     
 ]
-
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # finds url of media file
-urlpatterns = urlpatterns+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+# urlpatterns = urlpatterns+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

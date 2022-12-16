@@ -7,19 +7,20 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 import cloudinary.uploader
 from django.contrib.auth.models import User
-from . models import Profile, Post
+from . models import Profile, Post, Category
 from .forms import UploadForm
 
 # Create your views here.
 
 
 def index(request):
-    posts = Post.objects.all()
-    ctx = {'posts': posts}
-    return render(request, 'main_app/index.html', ctx)
+    return render(request, 'main_app/index.html')
 
 def gallery(request):
-    return render(request, 'gallery.html')
+    posts = Post.objects.all()
+    categories = Category.objects.all()
+    ctx = {'categories': categories, 'posts': posts}
+    return render(request, 'gallery.html', ctx)
 
 def viewMedia(request,pk):
     return render(request, 'show.html')    
