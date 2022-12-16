@@ -26,13 +26,12 @@ class Category(models.Model):
 
 class Post(models.Model):
     # unique id for post
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key = True, default=uuid.uuid4)
     user = models.CharField(max_length=100)
     media = models.ImageField(upload_to='posted_media')
     caption = models.TextField()
     created_at = models.DateTimeField(default=datetime.now)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
-
 
     def __str__(self):
         return self.user

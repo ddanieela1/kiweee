@@ -23,7 +23,8 @@ def gallery(request):
     return render(request, 'gallery.html', ctx)
 
 def viewMedia(request,pk):
-    return render(request, 'show.html')    
+    post = Post.objects.get(pk=id)
+    return render(request, 'show.html', {'post':post})    
 
 @login_required
 def homepage(request):
@@ -69,16 +70,9 @@ def login_view(request):
   
 @login_required
 def upload(request):
-    if request.method == 'POST':
-        user = request.user.username
-        media = request.FILES.get('media_upload')
-        caption = request.POST.get['caption']
-
-        uploaded_post = Post.objects.create(user=user, media=media, caption=caption)
-        uploaded_post.save()
-        return redirect('/homepage')
-    else:
-        return redirect('/profile')
+    categories = Category.objects.all()
+    ctx = {'categories': categories}
+    return render(request, 'main_app/upload.html', ctx)
 
 
 def logout_view(request):
