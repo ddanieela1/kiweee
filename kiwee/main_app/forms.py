@@ -6,7 +6,7 @@ from django.forms import ModelForm
 
 
 
-class UploadForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['media','caption', 'user' ]
+# class UploadForm(forms.ModelForm):
+#     class Meta:
+#         model = Post
+#         fields = ['media','caption', 'user' ]
