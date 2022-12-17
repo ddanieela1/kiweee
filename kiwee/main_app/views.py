@@ -124,11 +124,9 @@ def upload(request):
             caption = upload_data['caption'],
             media = media
         )    
-        ctx = {'categories': categories}
-        return render(request, 'main_app/upload.html', ctx)
-
-    return redirect('gallery')
-
+        return redirect('gallery')
+    
+    return render(request, 'main_app/upload.html', {'categories':categories})
 
 
 @login_required

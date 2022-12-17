@@ -14,8 +14,6 @@ class Profile(models.Model):
     location = models.TextField(blank = True, max_length= 100)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
-
-
     # show name in admin page
     def __str__(self):
         return self.user.username
@@ -28,12 +26,12 @@ class Category(models.Model):
 
 class Post(models.Model):
     # unique id for post
-    user = models.ForeignKey(User,on_delete=models.PROTECT)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     media = models.ImageField(upload_to='posted_media')
     caption = models.TextField()
     created_at = models.DateTimeField(default=datetime.now)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return self.caption
 
