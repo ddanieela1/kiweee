@@ -16,15 +16,25 @@ from .forms import UploadForm
 def index(request):
     return render(request, 'main_app/index.html')
 
+
 def gallery(request):
-    posts = Post.objects.all()
+    category = request.GET.get('category')
+
+    if category == None:
+        posts = Post.objects.all()
+    else:
+        posts = Post.objects.filter(category__name = category)
+
+    
     categories = Category.objects.all()
     ctx = {'categories': categories, 'posts': posts}
     return render(request, 'gallery.html', ctx)
 
+
 def viewMedia(request,pk):
     post = Post.objects.get(pk=id)
     return render(request, 'show.html', {'post':post})    
+
 
 @login_required
 def homepage(request):
@@ -32,10 +42,12 @@ def homepage(request):
     profile = Profile.objects.get(user = user_object)
     return render(request, 'profile.html', {'profile': profile})
    
+
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'profile.html', {'username': username})
+
 
 def login_view(request):
     if request.method == 'POST':
