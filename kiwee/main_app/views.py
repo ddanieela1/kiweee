@@ -68,9 +68,28 @@ def login_view(request):
 #     ctx = {'form': form}
 #     return render(request, '/profile', ctx)
   
-@login_required
+
 def upload(request):
     categories = Category.objects.all()
+
+    if request.method == 'POST':
+        upload_data = request.POST
+        media = request.FILES.get('media')
+
+        if upload_data['category'] != 'none':
+            category = Category.objects.get(id=upload_data['category'])
+        elif upload_data('category_net') != '':
+            category, created = Category.objects.get_or_create(name =upload_data['category_new'])
+        else:
+            category = None    
+
+        post = Post.objects.create(
+            category = category,
+            caption = upload_data['caption'],
+            media = media
+        )    
+        return redirect('gallery')
+
     ctx = {'categories': categories}
     return render(request, 'main_app/upload.html', ctx)
 

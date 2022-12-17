@@ -18,10 +18,19 @@
                       Gallery
                     </div>
                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href = "{% url 'gallery' %}">All</a>
+                        </li>
 
-                      {%for category in categories%}
-                      <li class="list-group-item">{{category.name}}</li>
-                      {% endfor %}
+                    <!-- ***loop categories here*** -->
+
+                    {%for category in categories%}
+                      <li class="list-group-item">
+                        <a href ="{% url 'gallery' %}?category={{category.name}}">
+                            {{category.name}}
+                        </a>
+                    </li>
+                    {% endfor %}
 
                       <li class="list-group-item">
                         <a href = "{% url 'upload' %}" class = "btn btn-dark btn-block btn-sm m-1">Add Photo</a>
@@ -32,10 +41,9 @@
             <div class = "col-md-9">
 
 
+                    <!-- ***loop all posts here*** -->
+
                 {%for post in posts%}
-
-
-                
                 <div class="col-md-4">
                     
                     <div class="card my-2" >
@@ -50,6 +58,8 @@
                 {% empty%}
                 <h3>No photos ... T_T </h3>
                 {% endfor %}
+
+
             </div>
         </div>
     </div>

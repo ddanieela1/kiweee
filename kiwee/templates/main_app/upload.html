@@ -16,9 +16,12 @@
 
 
                 <form method = "POST" action ="" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
                     <div class = "form-group m-3">
                         <label for="formFile" class="form-label">Caption:</label>
-                        <input name = "description" class="form-control" placeholder="Description here" type="text" id="description">
+                        <input name = "caption" class="form-control" placeholder="Description here" type="text" id="caption">
                     </div>
 
 
@@ -43,7 +46,7 @@
 
                     <div class = "form-group m-3">
                         <label for = "formFile" class="form-label">Upload Image:</label>
-                        <input name = "upload" class = "form-control" type="file" id="formFile">
+                        <input required name = "media" class = "form-control-file" type="file" id="formFile">
                     </div>
 
 
