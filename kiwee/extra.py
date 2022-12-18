@@ -45,3 +45,16 @@ def upload(request):
         return redirect('/profile')
 
 
+
+
+
+
+
+
+                        <!-- </div>
+                        <a href="{% url 'updatePost' media.id %}">Update</a>
+                        </div>
+
+                            <div>
+                                <a href = "{% url 'deletePost' media.id %}">Delete</a>
+                            </div> -->

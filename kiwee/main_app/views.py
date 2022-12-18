@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from django.contrib.auth.models import User
@@ -18,7 +19,7 @@ import cloudinary.uploader
 def index(request):
     return render(request, 'main_app/index.html')
 
-
+@login_required
 def gallery(request):
     category = request.GET.get('category')
 
@@ -32,13 +33,16 @@ def gallery(request):
     return render(request, 'gallery.html', ctx)
 
 
-
 @login_required
-def homepage(request):
-    user_object = User.objects.get(username=request.user.username)
-    profile = Profile.objects.get(user = user_object)
-    return render(request, 'profile.html', {'profile': profile})
-   
+def profile(request, username):
+    user = User.objects.get(username=username)
+    about= Profile.objects.get(about=about)
+    profile_image=Profile.objects.get(profile_image=profile_image)
+    location = Profile.objects.get(location=location)
+
+    ctx = {'about':about, 'profile_image':profile_image, 'location':location}
+
+    return render(request, 'profile.html', {'username': username},ctx)
 
 
 def login_view(request):
@@ -93,17 +97,23 @@ def signup(request):
 
 
 @login_required
-def profile(request, username):
-    user = User.objects.get(username=username)
-    return render(request, 'profile.html', {'username': username})
+def viewMedia(request,post_id):
+    post = Post.objects.filter(id=post_id)
+    return render(request, 'main_app/show.html', {'post':post})    
 
 
+@login_required
+class deletePost(DeleteView):
+    model = Post
+    template_name = 'delete.html'
+    success_url = reverse_lazy('gallery')
 
-def viewMedia(request,pk):
-    post = Post.objects.get(pk=id)
-    return render(request, 'show.html', {'post':post})    
+@login_required
+class updatePost(UpdateView):
+    model = Post
+    fields = ['caption', 'media']
 
-
+@login_required
 def upload(request):
     categories = Category.objects.all()
 

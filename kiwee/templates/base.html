@@ -12,11 +12,12 @@
     
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page"><a href="/gallery">View All Photos</a></li>
-          <li class="breadcrumb-item active" aria-current="page"><a href="/main_app/upload">Create Cat</a></li>
-        {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/upload">Add Photo</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/gallery">View All Photos</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="/user/{{user}}">{{user}}'s Profile</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'settings' %}">Settings</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
             <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'login' %}">Login</a></li>

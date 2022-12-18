@@ -9,16 +9,18 @@
 </head>
 <p>this is view</p>
 <body class="m-5">
-    <div class = "container">
-        <div class = "row justify-content-center">
-            <div class = "col">
-                <a href = "{% url 'gallery' %}" class = "btn btn-dark my-3">Go Back</a>
-                <div style = "height: 90vh;">
-                    <img style="max-width: 100%; max-height: 100%;" src="{{post.media.url}}">
-                    <p>{{post.caption}}</p>
-                </div>
+    <div class="col-md-4">
+                        
+        <div class="card my-2" >
+            <img class = "image-thumbnail"
+            src="{{post.media.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <small><p>Category: {{post.category.name}}</p></small>
             </div>
+            <a href="/main_app/post.id }}" class="btn btn-primary">Delete Photo</a>
+            </div>
+
+
         </div>
-    </div>
 </body>
 </html>
