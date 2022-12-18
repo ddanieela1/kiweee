@@ -30,7 +30,7 @@ class Post(models.Model):
     media = models.ImageField(upload_to='posted_media')
     caption = models.TextField()
     created_at = models.DateTimeField(default=datetime.now)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.caption

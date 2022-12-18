@@ -3,8 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from django.core.exceptions import ValidationError
-import uuid
+
 
 from django.contrib.auth.models import User
 from . models import Profile, Post, Category
@@ -115,15 +114,17 @@ def upload(request):
         if upload_data['category'] != 'none':
             category = Category.objects.get(id=upload_data['category'])
         elif upload_data('category_net') != '':
-            category, created = Category.objects.get_or_create(name =upload_data['category_new'])
+            category = Category.objects.get_or_create(name =upload_data['category_new'])
         else:
-            category = None    
+            category = None
 
         post = Post.objects.create(
+            user = request.user,
             category = category,
             caption = upload_data['caption'],
             media = media
-        )    
+        )
+        post.save()
         return redirect('gallery')
     
     return render(request, 'main_app/upload.html', {'categories':categories})
