@@ -111,10 +111,10 @@ def upload(request):
         upload_data = request.POST
         media = request.FILES.get('media')
 
-        if upload_data['category'] != 'none':
+        if upload_data['category'] != None:
             category = Category.objects.get(id=upload_data['category'])
-        elif upload_data('category_net') != '':
-            category = Category.objects.get_or_create(name =upload_data['category_new'])
+        elif upload_data['category'] != '':
+            category = Category.objects.get_or_create(name =upload_data['category'])
         else:
             category = None
 
