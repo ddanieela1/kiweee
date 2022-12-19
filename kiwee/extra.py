@@ -58,3 +58,6 @@ def upload(request):
                             <div>
                                 <a href = "{% url 'deletePost' media.id %}">Delete</a>
                             </div> -->
+
+
+            <!-- <a href="{% url 'updatePost' post.id %}" class="btn btn-warning">Update Details</a> -->

@@ -52,12 +52,12 @@
                             </div>
                             <a href="/main_app/{{post.id}}" class="btn btn-primary">View Photo</a>
                             </div>
-
-                            
-                            
-
-
                         </div>
+
+                        <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete This Post</a>
+
+
+
                         {% empty%}
                 <h3>No photos ... T_T </h3>
                 {% endfor %}

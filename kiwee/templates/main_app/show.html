@@ -17,7 +17,11 @@
             <div class="card-body">
                 <small><p>Category: {{post.category.name}}</p></small>
             </div>
-            <a href="/main_app/post.id }}" class="btn btn-primary">Delete Photo</a>
+
+            <a href="/main_app/{{post.id}}/delete" class="btn btn-danger">Delete This Post</a>
+
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete This Post</a>
+         
             </div>
 
 

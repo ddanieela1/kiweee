@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.utils.decorators import method_decorator
+from django.contrib import messages
+
 
 
 from django.contrib.auth.models import User
@@ -102,11 +105,11 @@ def viewMedia(request,post_id):
     return render(request, 'main_app/show.html', {'post':post})    
 
 
-@login_required
+@method_decorator(login_required, name='dispatch')
 class deletePost(DeleteView):
     model = Post
-    template_name = 'delete.html'
     success_url = reverse_lazy('gallery')
+
 
 @login_required
 class updatePost(UpdateView):
