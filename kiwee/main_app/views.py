@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from .forms import PostForm
 
 
 
@@ -99,10 +100,27 @@ def signup(request):
 
 
 
+
 @login_required
 def viewMedia(request,post_id):
     post = Post.objects.filter(id=post_id)
     return render(request, 'main_app/show.html', {'post':post})    
+
+
+
+
+@method_decorator(login_required, name='dispatch')
+class updatePost(UpdateView):
+    model = Post
+    fields = ['caption', 'media','category']
+    template_name = 'main_app/post_update.html'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect('/main_app/' + str(self.object.id))
+
+
 
 
 @method_decorator(login_required, name='dispatch')
@@ -111,10 +129,8 @@ class deletePost(DeleteView):
     success_url = reverse_lazy('gallery')
 
 
-@login_required
-class updatePost(UpdateView):
-    model = Post
-    fields = ['caption', 'media']
+
+
 
 @login_required
 def upload(request):

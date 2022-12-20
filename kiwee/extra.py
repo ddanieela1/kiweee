@@ -61,3 +61,117 @@ def upload(request):
 
 
             <!-- <a href="{% url 'updatePost' post.id %}" class="btn btn-warning">Update Details</a> -->
+
+
+
+                    <a href="/main_app/{{post.id}}/delete" class="btn btn-danger">Delete This Post</a>
+
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete This Post</a>
+
+
+
+
+
+# @method_decorator(login_required, name='dispatch')
+# class updatePost(UpdateView):
+#     model = Post
+#     fields = ['caption', 'media','category']
+    
+
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.save()
+#         return HttpResponseRedirect('/gallery/' + str(self.object.id))    
+
+
+@method_decorator(login_required, name='dispatch')
+class updatePost(UpdateView):
+    model = Post
+    fields = ['caption', 'media','category']
+    template_name = 'main_app/post_update.html'
+
+    
+
+    def form_valid(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('show', kwargs={'pk':pk})
+
+
+
+
+
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect('/gallery/post/{id}')    
+
+
+
+def post_update(request, id):
+    post = Post.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            # update the existing post in the database
+            form.save()
+            # redirect to the detail page of the post we just updated
+            return redirect('show', post.id)
+    else:
+        form = PostForm(instance=post)
+
+    return render(request,
+                'main_app/post_update.html',
+                {'form': form})
+
+
+
+
+
+
+
+@login_required
+@method_decorator(login_required, name='dispatch')
+def post_update(request, id):
+    post = Post.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            # update the existing post in the database
+            form.save()
+            # redirect to the detail page of the post we just updated
+            return redirect('show', post.id)
+    else:
+        form = PostForm(instance=post)
+
+    return render(request,'main_app/post_update.html',{'form': form})                   
+
+
+
+
+
+
+@method_decorator(login_required, name='dispatch')
+class updatePost(UpdateView):
+    model = Post
+    fields = ['caption', 'media','category']
+    template_name = 'main_app/post_update.html'
+
+    def form_valid(self,form):
+        self.object = form.save(commit=False)
+        self.object.post = Post.objects.get(pk=id)
+        self.object.save()
+        return HttpResponseRedirect('/show/' + str(self.object.pk))
+
+
+
+
+        @login_required
+def updatePost(request, post_id):
+    x = Post.objects.get( id = post_id) # <-- Here
+    form = PostForm(request.POST or None, instance=x)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("/gallery")
+    return render(request, 'main_app/post_update.html',{'form':form,'post':x})

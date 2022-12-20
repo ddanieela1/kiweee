@@ -49,6 +49,7 @@
                             src="{{post.media.url}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <small><p>Category: {{post.category.name}}</p></small>
+                                <small><p>Caption: {{post.caption.id}}</p></small>
                             </div>
                             <a href="/main_app/{{post.id}}" class="btn btn-primary">View Photo</a>
                             </div>
@@ -56,6 +57,9 @@
 
                         <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete This Post</a>
 
+                        <a href="{% url 'post_update' post.id %}" class="btn btn-warning">Update This Post</a>
+
+ 
 
 
                         {% empty%}
