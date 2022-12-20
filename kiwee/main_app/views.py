@@ -1,23 +1,21 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.utils.decorators import method_decorator
 from django.contrib import messages
-from .forms import PostForm
-
 
 
 from django.contrib.auth.models import User
 from . models import Profile, Post, Category
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 
 
 import cloudinary.uploader
-# Create your views here.
+
 
 
 def index(request):
@@ -74,10 +72,12 @@ def logout_view(request):
 
 
 
-# @login_required
-# def profile(request):
-#     profile = Profile.objects.all()
-#     return render(request, 'profile.html', {'profile': profile})
+@login_required
+def profile(request,username):
+    user_object = User.objects.get(username=username)
+    user_profile = Profile.objects.get(user=username)
+    ctx = {'user_object':user_object, 'user_profile':user_profile}
+    return render(request, 'profile.html', ctx)
 
 
 @login_required
