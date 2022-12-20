@@ -1,19 +1,90 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up</title>
 </head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Quicksand:wght@300&display=swap');
+
+  .form{
+    background-color: rgb(147, 169, 147);
+        justify-items: center;
+        align-items:center;
+        justify-content: center;
+        margin:0;
+        opacity: 0.9;
+        font-size: 25px;
+        font-family: 'Quicksand', sans-serif;
+        display:inline-block;
+        padding: 30px;
+  }
+  body{
+      background-image: url('/static/assets/images/sign-up.jpg');
+      background-size: cover;
+      display:flex;
+      justify-items: center;
+      align-items:center;
+      justify-content: center;
+      margin:0;
+      text-align:center;
+}
+h1{
+        margin: 0;
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        font-family: 'Lobster', cursive;
+        color: rgb(8, 53, 8);
+        font-size: 60px;
+        -webkit-text-stroke: 0.5px pink;
+  }
+  .button{
+    border-radius: 40px;
+  background-color: #203922;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  color:pink;
+  font-family: 'Quicksand', sans-serif;
+  }
+  .button:hover {
+      background-color:pink;
+      transition: 0.7s;
+      color:rgb(8, 53, 8);  
+}
+.sign-up{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  }
+
+
+</style>
+
 <body>
     <h1>Make an Account:</h1>
+<div class="sign-up">
 
-  <form method="POST">
+  <form class="form" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     
-    <button type="submit">Sign up</button>
+    <button class="button" type="submit">Sign up</button>
   </form>
+</div> 
 </body>
 </html>
