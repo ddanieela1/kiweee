@@ -9,20 +9,20 @@
 </head>
 <p>this is view</p>
 <body class="m-5">
+    {% for p in post%}    
     <div class="col-md-4">
-                        
         <div class="card my-2" >
             <img class = "image-thumbnail"
-            src="{{post.media.url}}" class="card-img-top" alt="...">
+            src="{{p.media.url}}" class="card-img-top" alt="...">
             <div class="card-body">
-                <small><p>Category: {{post.category.name}}</p></small>
+                <small><p>Category: {{p.category.name}}</p></small>
             </div>
-
-    
-         
-            </div>
-
-
+            
+            
         </div>
+        
+        
+    </div>
+    {% endfor %}
 </body>
 </html>

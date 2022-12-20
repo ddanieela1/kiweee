@@ -23,31 +23,6 @@ import cloudinary.uploader
 def index(request):
     return render(request, 'main_app/index.html')
 
-@login_required
-def gallery(request):
-    category = request.GET.get('category')
-
-    if category == None:
-        posts = Post.objects.all()
-    else:
-        posts = Post.objects.filter(category__name = category)
-
-    categories = Category.objects.all()
-    ctx = {'categories': categories, 'posts': posts}
-    return render(request, 'gallery.html', ctx)
-
-
-@login_required
-def profile(request, username):
-    user = User.objects.get(username=username)
-    about= Profile.objects.get(about=about)
-    profile_image=Profile.objects.get(profile_image=profile_image)
-    location = Profile.objects.get(location=location)
-
-    ctx = {'about':about, 'profile_image':profile_image, 'location':location}
-
-    return render(request, 'profile.html', {'username': username},ctx)
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -59,7 +34,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/user/'+u)
+                    return HttpResponseRedirect('/gallery/')
                 else:
                     print('The account has been disabled.')
             else:
@@ -67,13 +42,6 @@ def login_view(request):
     else:  # it was a get request so send the emtpy login form
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
-
-
-
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/')
-
 
 
 def signup(request):
@@ -100,12 +68,38 @@ def signup(request):
 
 
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
+
+# @login_required
+# def profile(request):
+#     profile = Profile.objects.all()
+#     return render(request, 'profile.html', {'profile': profile})
+
+
+@login_required
+def gallery(request):
+    category = request.GET.get('category')
+
+    if category == None:
+        posts = Post.objects.all()
+    else:
+        posts = Post.objects.filter(category__name = category)
+
+    categories = Category.objects.all()
+    ctx = {'categories': categories, 'posts': posts}
+    return render(request, 'gallery.html', ctx)
+
+
+
 
 @login_required
 def viewMedia(request,post_id):
     post = Post.objects.filter(id=post_id)
     return render(request, 'main_app/show.html', {'post':post})    
-
 
 
 
@@ -127,7 +121,6 @@ class updatePost(UpdateView):
 class deletePost(DeleteView):
     model = Post
     success_url = reverse_lazy('gallery')
-
 
 
 
