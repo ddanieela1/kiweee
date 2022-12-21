@@ -123,8 +123,6 @@ class deletePost(DeleteView):
     success_url = reverse_lazy('gallery')
 
 
-
-
 @login_required
 def upload(request):
     categories = Category.objects.all()
