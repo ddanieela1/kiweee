@@ -175,3 +175,24 @@ def updatePost(request, post_id):
             form.save()
             return redirect("/gallery")
     return render(request, 'main_app/post_update.html',{'form':form,'post':x})
+
+
+
+
+
+
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if user.is_authenticated %}
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/upload">Add Photo</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/gallery">View All Photos</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/user/{{user}}">{{user}}'s Profile</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'settings' %}">Settings</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'login' %}">Login</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
+        </ol>
+    </nav>

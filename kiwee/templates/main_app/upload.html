@@ -1,21 +1,82 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Upload</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Quicksand:wght@300&display=swap');
+          .form{
+    background-color: rgb(147, 169, 147);
+        justify-items: center;
+        align-items:center;
+        justify-content: center;
+        margin: 100px;
+        opacity: 0.9;
+        font-size: 25px;
+        font-family: 'Quicksand', sans-serif;
+        display:inline-block;
+        padding: 70px;
+  }
+    body{
+        background-image: url('/static/assets/images/pink-green-3.png');
+        background-size: cover;
+        display:flex;
+        justify-items: center;
+        align-items:center;
+        justify-content: center;
+        margin:0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        }
+        .button {
+            border-radius: 40px;
+  background-color: #203922;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 20px;
+  color:pink;
+  font-family: 'Quicksand', sans-serif;
+  text-decoration:none;
+  }
+  .button:hover {
+      background-color:pink;
+      transition: 0.7s;
+      color:rgb(8, 53, 8);  
+}
+#submit{
+    margin:50px;
+}
+#go-back{
+    margin:30px;
+    
+}
+
+        
+
+    </style>
 </head>
 <body class = "m-5">
 <div class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-4">
-            <a href = "{% url 'gallery' %}" class = "btn btn-dark btn-block btn-sm m-1">Go Back</a>
+            <a id = "go-back" href = "{% url 'gallery' %}" class = "button">Go Back</a>
 
             <div class ="card">
 
 
-                <form method = "POST" action ="" enctype="multipart/form-data">
+                <form class ="form" method = "POST" action ="" enctype="multipart/form-data">
 
                     {% csrf_token %}
 
@@ -50,7 +111,7 @@
                     </div>
 
 
-                    <button type="submit" class = "btn btn-primary m-3">Submit</button>
+                    <button id="submit" type="submit" class = "button">Submit</button>
 
                 </form>
             </div>
