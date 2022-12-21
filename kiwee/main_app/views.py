@@ -71,7 +71,6 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-
 @login_required
 def profile(request,username):
     user_object = User.objects.get(username=username)
