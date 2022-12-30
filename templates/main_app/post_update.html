@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<style>
+      .form{
+    background-color: rgb(147, 169, 147);
+        justify-items: center;
+        align-items:center;
+        justify-content: center;
+        margin:0;
+        opacity: 0.9;
+        font-size: 20px;
+        font-family: 'Quicksand', sans-serif;
+        display:inline-block;
+        padding: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+  }
+  .submit{
+    border-radius: 40px;
+  background-color: #203922;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  color:pink;
+  font-family: 'Quicksand', sans-serif;
+  }
+  .button:hover {
+      background-color:pink;
+      transition: 0.7s;
+      color:rgb(8, 53, 8);  
+}
+
+
+</style>
+<div>
+    <form class="form" action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class= "submit" type="submit" value="Submit" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}
+
