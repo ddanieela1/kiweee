@@ -43,6 +43,7 @@ def login_view(request):
 
 
 def signup(request):
+    
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
 
@@ -52,10 +53,10 @@ def signup(request):
             login(request, user)
             return HttpResponseRedirect('/user/'+u)
 
-        elif request.POST['username'] == request.POST['username'].exists():
-            username = form.cleaned_data['username']
-            messages.info(request, 'Username already in use.')
-            return redirect('/signup')
+        # elif request.POST['username'] == request.POST['username'].exists():
+        #     username = form.cleaned_data['username']
+        #     messages.info(request, 'Username already in use.')
+        #     return redirect('/signup')
 
         else:
             return render(request, 'signup.html', {'form': form})
@@ -73,9 +74,13 @@ def logout_view(request):
 
 @login_required
 def profile(request,username):
-    user_object = User.objects.get(username=username)
-    user_profile = Profile.objects.get(user=username)
-    ctx = {'user_object':user_object, 'user_profile':user_profile}
+    # if user == '':
+    #     user = None
+
+    username= User.objects.get(username=username)
+    
+    # user = Profile.objects.filter(user=user)
+    ctx = {'username':username}
     return render(request, 'profile.html', ctx)
 
 
