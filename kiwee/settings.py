@@ -159,4 +159,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT= BASE_DIR / 'static/assets'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+
+import django_on_heroku
+django_on_heroku.settings(locals())
 # BASE_DIR = Path(__file__).resolve().parent.parent
