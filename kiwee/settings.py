@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
+import dj_database_url
+
 import cloudinary_storage
 
 from dotenv import load_dotenv, dotenv_values
@@ -32,7 +35,7 @@ print('secret key-->', SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -163,3 +166,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 import django_on_heroku
 django_on_heroku.settings(locals())
 # BASE_DIR = Path(__file__).resolve().parent.parent
+django_heroku.settings(locals())
