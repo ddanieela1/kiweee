@@ -1,1 +1,1 @@
-web: gunicorn kiwee.wsgi
+web: gunicorn kiwee.wsgi:application --log-file -
