@@ -137,7 +137,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -152,7 +151,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 
 STATICFILES_DIRS = [
@@ -160,10 +158,17 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT= BASE_DIR / 'static/assets'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-import django_on_heroku
-django_on_heroku.settings(locals())
-# BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 django_heroku.settings(locals())
+
+
+# django_on_heroku.settings(locals())
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+
