@@ -1,1 +1,1 @@
-web: gunicorn --chdir kiwee kiwee.wsgi:application --log-file -
+web: gunicorn --pythonpath kiwee.wsgi:application --log-file
