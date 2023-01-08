@@ -18,7 +18,7 @@ import cloudinary_storage
 
 from dotenv import load_dotenv, dotenv_values
 
-PYTHONPATH='/Users/danielavillanueva/Desktop/general-assembly/unit-4/project/kiwee'
+# PYTHONPATH='/Users/danielavillanueva/Desktop/general-assembly/unit-4/project/kiwee'
 
 config = dotenv_values('.env')
 print(config, '----------------------------------------------------------------')
