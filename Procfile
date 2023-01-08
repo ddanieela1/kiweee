@@ -1,1 +1,1 @@
-web: gunicorn kiwee.wsgi
+web: gunicorn kiwee kiwee.wsgi
