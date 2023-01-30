@@ -18,8 +18,9 @@ import dj_database_url
 import cloudinary_storage
 
 from dotenv import load_dotenv, dotenv_values
+os.environ['PYTHONPATH']
 
-# PYTHONPATH='/Users/danielavillanueva/Desktop/general-assembly/unit-4/project/kiwee'
+PYTHONPATH="/Users/danielavillanueva/Desktop/general-assembly/unit-4/project/kiwee/env/newenv/lib/python3.11/site-packages"
 
 config = dotenv_values('.env')
 print(config, '----------------------------------------------------------------')
@@ -71,7 +72,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kiwee.urls'
-
 
 
 
