@@ -251,5 +251,5 @@ def settings(request):
 ```
 
 # Future Improvements:
--Allowing the user to add friends and view others album/photos
--Adding the option of a private photo album
+Allowing the user to add friends and view others album/photos
+Adding the option of a private photo album
