@@ -27,9 +27,13 @@ pip3 install psycopg2 & pip3 install python-dotenv
 ![Screen Shot 2023-02-07 at 2 43 22 PM](https://user-images.githubusercontent.com/96893640/217348865-e8402453-b7e7-4ecd-bb34-cc755d2ef919.png)
 
 # Homepage:
+The side menu shows all categories previously created by the user and will filter search the image with the corresponding category once clicked.
+
 ![Screen Shot 2023-02-07 at 2 46 39 PM](https://user-images.githubusercontent.com/96893640/217349519-00ca1fdf-3e61-4fa3-a637-e2669aa031d4.png)
 
 # Photo Upload:
+On photo upload users can create a new category or select from a pre-existing category previously created.
+
 ![Screen Shot 2023-02-07 at 2 47 02 PM](https://user-images.githubusercontent.com/96893640/217349612-2a47614b-141f-444d-af56-94d9d13d6cb6.png)
 
 # URL's:
